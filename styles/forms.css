@@ -1,0 +1,68 @@
+form#search-teachers .input-block label {
+    color: var(--color-text-in-primary);
+}
+
+.input-block {
+    position: relative;
+}
+
+.input-block label {
+    font-size: 14px;
+    color: var(--color-text-complement);
+}
+
+.input-block input {
+    width: 100%;
+    height: 56px;
+    margin-top: 8px;
+    border-radius: 8px;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    padding: 0 16px;
+    font: 16px Archivo;
+}
+
+.input-block:focus-within::after {
+    width: calc(100% - 32px);
+    height: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 0;
+}
+
+.textarea-block {
+    position: relative;
+}
+
+.textarea-block label {
+    font-size: 14px;
+    color: var(--color-text-complement);
+}
+
+.textarea-block textarea {
+    width: 100%;
+    height: 160px;
+    margin-top: 8px;
+    border-radius: 8px;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    resize: vertical;
+    padding: 12px 16px;
+    font: 16px Archivo;
+}
+
+.textarea-block:focus-within::after {
+    width: calc(100% - 32px);
+    height: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 0;
+}

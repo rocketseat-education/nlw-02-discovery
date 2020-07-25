@@ -49,5 +49,4 @@ textarea {
 #container {
     width: 90vw;
     max-width: 500px;
-    color: var(--color-text-in-primary);
 }

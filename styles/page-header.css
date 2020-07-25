@@ -1,9 +1,7 @@
 .page-header {
-    height: 420px;
     display: flex;
     flex-direction: column;
     background: var(--color-primary);
-    margin-bottom: 6rem;
 }
 
 .page-header .top-bar-container {
@@ -33,7 +31,7 @@
     width: 90%;
     margin: 0 auto;
     position: relative;
-    margin-top: 3.2rem;
+    margin: 3.2rem auto;
 }
 
 .page-header .header-content strong {
@@ -42,63 +40,34 @@
     color: var(--color-title-in-primary);
 }
 
-#search-teachers {
-    margin-top: 5.2rem;
-}
-
-#search-teachers .input-block {
-    margin-bottom: 2.4rem;
-}
-
-
-/* 
-.page-header .top-bar-container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--color-text-in-primary);
-    padding: 16px 0;
-} */
-
-
-/* 
-.page-header .header-content {
-    flex: 1 1;
-    width: 90%;
-    max-width: 740px;
-    margin: 0 auto;
-    padding-bottom: 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
-} */
-
-
-/* 
-.page-header .header-content strong {
-    max-width: 350px;
-    font: 700 36px Archivo;
-    line-height: 42px;
-    color: var(--color-title-in-primary);
-} */
-
 .page-header .header-content p {
-    max-width: 300px;
-    font-size: 16px;
-    line-height: 26px;
+    max-width: 30rem;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
     color: var(--color-text-in-primary);
-    margin-top: 24px;
+    margin-top: 2.4rem;
 }
 
 @media (min-width: 700px) {
-    form#search-teachers {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.6rem;
+    .page-header .top-bar-container {
+        max-width: 1100px;
     }
+
+    .page-header .header-content {
+        flex: 1 1;
+        max-width: 740px;
+
+        margin: 0 auto;
+        padding-bottom: 48px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .page-header .header-content strong {
+        max-width: 350px;
+    }
+
 }

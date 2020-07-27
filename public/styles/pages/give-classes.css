@@ -52,6 +52,7 @@
 }
 
 #page-give-classes main fieldset .input-block+.input-block,
+#page-give-classes main fieldset .select-block + .input-block,
 #page-give-classes main fieldset .input-block+.textarea-block {
     margin-top: 2.4rem;
 }
@@ -132,3 +133,6 @@
         padding: 40px 64px;
     }
 }
+
+
+  

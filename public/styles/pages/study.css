@@ -7,11 +7,11 @@
     margin-top: 3.2rem;
 }
 
-form#search-teachers .input-block label {
-    color: var(--color-text-in-primary);
+#search-teachers label {
+    color: var(--color-text-in-primary)
 }
 
-#search-teachers .input-block {
+#search-teachers .select-block {
     margin-bottom: 1.4rem;
 }
 

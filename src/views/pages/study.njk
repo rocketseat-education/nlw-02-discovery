@@ -1,58 +1,42 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "layout.njk" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#8257E5">
+{% set pageId = "page-study" %}
 
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins&amp;display=swap" rel="stylesheet">
+{% block head %}
+    <link rel="stylesheet" href="/styles/partials/page-header.css">
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+    <link rel="stylesheet" href="/styles/pages/study.css">
+{% endblock %}
 
-    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+{% block content %}
+    <header class="page-header">
+        <div class="top-bar-container">
+            <a href="/"><img src="/images/icons/back.svg" alt="Voltar"></a><img src="/images/logo.svg" alt="Proffy"></div>
+        <div class="header-content"><strong>Esses são os proffys disponíveis.</strong>
+            <form id="search-teachers">
+                <div class="input-block"><label for="subject">Matéria</label><input name="subject" id="subject"></div>
+                <div class="input-block"><label for="weekday">Dia da semana</label><input name="weekday" id="weekday"></div>
+                <div class="input-block"><label for="time">Horário</label><input name="time" id="time"></div>
+            </form>
+        </div>
+    </header>
 
-    <title>Proffy | Sua plataforma de estudos online</title>
-
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/page-header.css">
-    <link rel="stylesheet" href="/styles/forms.css">
-    <link rel="stylesheet" href="/styles/study.css">
-</head>
-
-<body id="page-teacher-list">
-    <div id="container">
-
-        <header class="page-header">
-            <div class="top-bar-container">
-                <a href="/"><img src="/images/icons/back.svg" alt="Voltar"></a><img src="/images/logo.svg" alt="Proffy"></div>
-            <div class="header-content"><strong>Esses são os proffys disponíveis.</strong>
-                <form id="search-teachers">
-                    <div class="input-block"><label for="subject">Matéria</label><input name="subject" id="subject"></div>
-                    <div class="input-block"><label for="weekday">Dia da semana</label><input name="weekday" id="weekday"></div>
-                    <div class="input-block"><label for="time">Horário</label><input name="time" id="time"></div>
-                </form>
-            </div>
-        </header>
-
-        <main>
-            <article class="teacher-item">
-                <header><img src="https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4" alt="Diego Fernandes">
-                    <div><strong>Diego Fernandes</strong><span>Química</span></div>
-                </header>
-                <p>Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.</p>
-                <footer>
-                    <p>Preço/hora<strong>R$ 20,00</strong></p><button type="button"><img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato</button></footer>
-            </article>
-            <article class="teacher-item">
-                <header><img src="https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4" alt="Diego Fernandes">
-                    <div><strong>Diego Fernandes</strong><span>Química</span></div>
-                </header>
-                <p>Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.</p>
-                <footer>
-                    <p>Preço/hora<strong>R$ 20,00</strong></p><button type="button"><img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato</button></footer>
-            </article>
-        </main>
-
-    </div>
-</body>
-
-</html>
+    <main>
+        <article class="teacher-item">
+            <header><img src="https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4" alt="Diego Fernandes">
+                <div><strong>Diego Fernandes</strong><span>Química</span></div>
+            </header>
+            <p>Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.</p>
+            <footer>
+                <p>Preço/hora<strong>R$ 20,00</strong></p><button type="button"><img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato</button></footer>
+        </article>
+        <article class="teacher-item">
+            <header><img src="https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4" alt="Diego Fernandes">
+                <div><strong>Diego Fernandes</strong><span>Química</span></div>
+            </header>
+            <p>Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.</p>
+            <footer>
+                <p>Preço/hora<strong>R$ 20,00</strong></p><button type="button"><img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato</button></footer>
+        </article>
+    </main>
+{% endblock %}

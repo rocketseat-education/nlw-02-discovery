@@ -1,13 +1,13 @@
-#page-teacher-form #container {
+#page-give-classes #container {
     width: 100vw;
     height: 100vh;
 }
 
-#page-teacher-form .page-header .header-content {
+#page-give-classes .page-header .header-content {
     margin-bottom: 6.4rem;
 }
 
-#page-teacher-form main {
+#page-give-classes main {
     background: var(--color-box-base);
     width: 100%;
     max-width: 74rem;
@@ -17,16 +17,16 @@
     overflow: hidden;
 }
 
-#page-teacher-form main fieldset {
+#page-give-classes main fieldset {
     border: 0;
     padding: 0 2.4rem;
 }
 
-#page-teacher-form main fieldset+fieldset {
+#page-give-classes main fieldset+fieldset {
     margin-top: 6.4rem;
 }
 
-#page-teacher-form main fieldset legend {
+#page-give-classes main fieldset legend {
     font: 700 2.4rem Archivo;
     color: var(--color-text-title);
     margin-bottom: 2.4rem;
@@ -38,7 +38,7 @@
     border-bottom: 1px solid var(--color-line-in-white);
 }
 
-#page-teacher-form main fieldset legend button {
+#page-give-classes main fieldset legend button {
     background: none;
     border: 0;
     color: var(--color-primary);
@@ -47,16 +47,16 @@
     transition: color 0.2s;
 }
 
-#page-teacher-form main fieldset legend button:hover {
+#page-give-classes main fieldset legend button:hover {
     color: var(--color-primary-dark);
 }
 
-#page-teacher-form main fieldset .input-block+.input-block,
-#page-teacher-form main fieldset .input-block+.textarea-block {
+#page-give-classes main fieldset .input-block+.input-block,
+#page-give-classes main fieldset .input-block+.textarea-block {
     margin-top: 2.4rem;
 }
 
-#page-teacher-form main footer {
+#page-give-classes main footer {
     padding: 4rem 2.4rem;
     background: var(--color-box-footer);
     border-top: 1px solid var(--color-line-in-white);
@@ -66,7 +66,7 @@
     justify-content: space-between;
 }
 
-#page-teacher-form main footer p {
+#page-give-classes main footer p {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -76,11 +76,11 @@
     color: var(--color-text-complement);
 }
 
-#page-teacher-form main footer p img {
+#page-give-classes main footer p img {
     margin-right: 2rem;
 }
 
-#page-teacher-form main footer button {
+#page-give-classes main footer button {
     width: 20rem;
     height: 5.6rem;
     background: var(--color-secundary);
@@ -96,7 +96,7 @@
     transition: 0.2s;
 }
 
-#page-teacher-form main footer button:hover {
+#page-give-classes main footer button:hover {
     background: var(--color-secundary-dark);
 }
 
@@ -119,16 +119,16 @@
      :root {
         font-size: 62.5%;
     }
-    #page-teacher-form #container {
+    #page-give-classes #container {
         max-width: 100vw;
     }
-    #page-teacher-form .page-header .header-content {
+    #page-give-classes .page-header .header-content {
         margin-bottom: 0;
     }
-    #page-teacher-form main fieldset {
+    #page-give-classes main fieldset {
         padding: 0 64px;
     }
-    #page-teacher-form main footer {
+    #page-give-classes main footer {
         padding: 40px 64px;
     }
 }

@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "layout.njk" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#8257E5">
 
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins&amp;display=swap" rel="stylesheet">
+{% set pageId = "page-give-classes" %}
 
-    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+{% block head %}
+    <link rel="stylesheet" href="/styles/partials/page-header.css">
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+    <link rel="stylesheet" href="/styles/pages/give-classes.css">
+{% endblock %}
 
-    <title>Proffy | Sua plataforma de estudos online</title>
-
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/page-header.css">
-    <link rel="stylesheet" href="/styles/forms.css">
-    <link rel="stylesheet" href="/styles/give-classes.css">
-</head>
-
-<body id="page-teacher-form">
-    <div id="container">
-
+{% block content %}
         <header class="page-header">
             <div class="top-bar-container">
                 <a href="/"><img src="/images/icons/back.svg" alt="Voltar"></a><img src="/images/logo.svg" alt="Proffy"></div>
@@ -53,7 +42,5 @@
             <footer>
                 <p><img src="/images/icons/warning.svg" alt="Aviso importante">Importante! <br>Preencha todos os dados</p><button type="button">Salvar cadastro</button></footer>
         </main>
-    </div>
-</body>
-
-</html>
+    
+{% endblock %}

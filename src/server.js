@@ -16,6 +16,7 @@ server.use(express.static("public"))
 const nunjucks = require("nunjucks")
 nunjucks.configure("src/views", {
     express: server,
+    watch: true,
     noCache: true, // boolean
 })
 
@@ -37,44 +38,50 @@ server.get("/give-classes", (req, res) => {
 server.post("/give-classes", (req, res) => {
 
     // req.body: O corpo do nosso formulário
-    // console.log(req.body)
+    console.log(req.body)
+
+    // insert teacher
+    let teacher
+    // insert class
+
+    // insert class schedule
 
     // inserir dados no banco de dados
-    const query = `
-        INSERT INTO teachers (
-            name,
-            avatar_url,
-            address,
-            address2,
-            state,
-            city,
-            items
-        ) VALUES (?,?,?,?,?,?,?);
-    `
+    // const query = `
+    //     INSERT INTO teachers (
+    //         name,
+    //         avatar_url,
+    //         address,
+    //         address2,
+    //         state,
+    //         city,
+    //         items
+    //     ) VALUES (?,?,?,?,?,?,?);
+    // `
 
-    const values = [
-        req.body.image,
-        req.body.name,
-        req.body.address,
-        req.body.address2,
-        req.body.state,
-        req.body.city,
-        req.body.items
-    ]
+    // const values = [
+    //     req.body.image,
+    //     req.body.name,
+    //     req.body.address,
+    //     req.body.address2,
+    //     req.body.state,
+    //     req.body.city,
+    //     req.body.items
+    // ]
 
-    function afterInsertData(err) {
-        if(err) {
-            console.log(err)
-            return res.send("Erro no cadastro!")
-        }
+    // function afterInsertData(err) {
+    //     if(err) {
+    //         console.log(err)
+    //         return res.send("Erro no cadastro!")
+    //     }
 
-        console.log("Cadastrado com sucesso")
-        console.log(this)
+    //     console.log("Cadastrado com sucesso")
+    //     console.log(this)
 
-        return res.render("create-point.html", {saved: true})
-    }
+    //     return res.render("create-point.html", {saved: true})
+    // }
 
-    db.run(query, values, afterInsertData)
+    // db.run(query, values, afterInsertData)
 
 })
 
@@ -108,9 +115,9 @@ server.get("/search", (req, res) => {
 // se passar por todos os passos acima
 // mas não achou nenhuma página, ele vai cair 
 // nessa parte
-server.use((req, res, next) => {
-    return res.send('Página de erro')
-})
+// server.use((req, res, next) => {
+//     return res.send('Página de erro')
+// })
 
 // liguei meu servidor na porta 5000
 server.listen(5000)

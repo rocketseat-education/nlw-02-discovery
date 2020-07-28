@@ -62,15 +62,12 @@
     background: var(--color-box-footer);
     border-top: 1px solid var(--color-line-in-white);
     margin-top: 6.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 #page-give-classes main footer p {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     font-size: 1.4rem;
     line-height: 2.4rem;
@@ -82,7 +79,7 @@
 }
 
 #page-give-classes main footer button {
-    width: 20rem;
+    width: 100%;
     height: 5.6rem;
     background: var(--color-secundary);
     color: var(--color-button-text);
@@ -95,18 +92,13 @@
     justify-content: center;
     text-decoration: none;
     transition: 0.2s;
+    margin-top: 3.2rem;
 }
 
 #page-give-classes main footer button:hover {
     background: var(--color-secundary-dark);
 }
 
-.schedule-item {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-column-gap: 1.6rem;
-    column-gap: 1.6rem;
-}
 
 .schedule-item+.schedule-item {
     margin-top: 1.6rem;
@@ -120,6 +112,7 @@
      :root {
         font-size: 62.5%;
     }
+
     #page-give-classes #container {
         max-width: 100vw;
     }
@@ -129,8 +122,28 @@
     #page-give-classes main fieldset {
         padding: 0 64px;
     }
+
+    .schedule-item {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-column-gap: 1.6rem;
+        column-gap: 1.6rem;
+    }
+
     #page-give-classes main footer {
         padding: 40px 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #page-give-classes main footer p {
+        justify-content: space-between;
+    }
+
+    #page-give-classes main footer button {
+        width: 20rem;
+        margin-top: 0;
     }
 }
 

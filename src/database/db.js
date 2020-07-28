@@ -2,7 +2,7 @@
 const sqlite3 = require("sqlite3").verbose()
 
 // criar o objeto que irá fazer operações no banco de dados
-const db = new sqlite3.Database("./src/database/database.db")
+const db = new sqlite3.Database(__dirname + "/database.db")
 
 module.exports = db
 // utilizar o objeto de banco de dados, para nossas operações
@@ -25,9 +25,9 @@ db.serialize(() => {
         CREATE TABLE IF NOT EXISTS class_schedule (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             class_id INTEGER,
-            week_day INTEGER,
-            from INTEGER,
-            to INTEGER
+            weekday INTEGER,
+            time_from INTEGER,
+            time_to INTEGER
         );
     `)
 
@@ -41,16 +41,16 @@ db.serialize(() => {
     `)
 
     // // 2 Inserir dados na tabela teachers
-    const query = `
+    let query = `
         INSERT INTO teachers (
             name,
-            avatar_url,
+            avatar,
             whatsapp,
             bio
         ) VALUES (?,?,?,?);
     `
 
-    const values = [
+    let values = [
         "Mayk Brito",
         "https://avatars2.githubusercontent.com/u/6643122?s=460&u=1e9e1f04b76fb5374e6a041f5e41dce83f3b5d92&v=4",
         "7899887766",
@@ -66,11 +66,26 @@ db.serialize(() => {
         console.log(this)
     }
 
+
     db.run(query, values, afterInsertData)
 
 
+    // // insert data on classes table
+    // query = `INSERT INTO classes (
+    //     subject,
+    //     cost,
+    //     teacher_id
+    // ) VALUES (?,?,?);`
+
+    // values = [
+    //     'Programação WEB para iniciantes',
+    //     '100',
+    //     teacher_id
+    // ]
+
+
     // 3 Consultar os dados da tabela
-    db.all(`SELECT name FROM teachers`, function(err, rows) {
+    db.all(`SELECT * FROM teachers`, function(err, rows) {
         if(err) {
             return console.log(err)
         }

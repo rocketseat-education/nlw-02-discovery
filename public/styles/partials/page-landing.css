@@ -1,3 +1,7 @@
+:root {
+    font-size: 40%; /* modificar as medidas rem */
+}
+
 #page-landing {
     background: var(--color-primary);
 }
@@ -89,7 +93,7 @@
 }
 
 @media (min-width: 700px) {
-     :root {
+    :root {
         font-size: 62.5%;
     }
 }

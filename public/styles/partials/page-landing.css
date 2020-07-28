@@ -92,12 +92,6 @@
     margin-left: 0.8rem;
 }
 
-@media (min-width: 700px) {
-    :root {
-        font-size: 62.5%;
-    }
-}
-
 @media (min-width: 1100px) {
     #page-landing #container {
         max-width: 1100px;

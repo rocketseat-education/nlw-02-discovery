@@ -50,3 +50,10 @@ textarea {
     width: 90vw;
     max-width: 500px;
 }
+
+/* every page above 700px of width */
+@media (min-width: 700px) {
+    :root {
+        font-size: 62.5%; /* making 1rem act like 10px */
+    }
+}

@@ -119,7 +119,7 @@ server.post("/give-classes", (req, res) => {
     db.then( async db => {
         await createTeacher(db, { teacherValue, classValue, classScheduleValues })
 
-        return res.redirect('/give-classes')
+        return res.redirect(`/study?subject=${req.body.subject}&weekday=${req.body.weekday[0]}&time=${req.body.time_from[0]}`)
     })
     
 })

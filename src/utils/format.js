@@ -1,12 +1,8 @@
-function onlyNumber(value) {
-    return value.replace(/\D/gi, "")
-}
-
 function convertHourToMinutes(time) {
     const [hour, minutes] = time.split(':').map(Number);
     const timeInMinutes = (hour * 60) + minutes;
 
-    return timeInMinutes;
+    return +timeInMinutes;
 }
 
 function getSubject(subject) {
@@ -37,10 +33,8 @@ function getSubject(subject) {
 // console.log(getSubject())
 
 // console.log(convertHourToMinutes('12:59'))
-// console.log(onlyNumber("12cc,,,...343sdadfef"))
 
 module.exports = {
-    onlyNumber,
     convertHourToMinutes,
     getSubject
 }

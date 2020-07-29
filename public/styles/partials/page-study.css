@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: 0.2s;
+    transition: background 0.2s;
     margin-top: 3.2rem;
 }
 
@@ -125,7 +125,7 @@
     align-items: center;
     justify-content: space-evenly;
     text-decoration: none;
-    transition: 0.2s;
+    transition: background 0.2s;
     margin-left: 1.6rem;
 }
 

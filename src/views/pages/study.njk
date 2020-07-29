@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="/styles/partials/header.css">
     <link rel="stylesheet" href="/styles/partials/forms.css">
     <link rel="stylesheet" href="/styles/partials/page-study.css">
-
-    <script src="/scripts/searchTeacher.js" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -20,11 +18,11 @@
                 <div class="select-block">
                     <label for="subject">Matéria</label>
                     <select name="subject" id="subject">
-                        <option value="" disabled="" hidden="">Selecione uma opção</option>
+                        <option value="" disabled="" hidden="">Selecione uma opção {{filter.weekday}}</option>
                         {% for subject in subjects %}
                             <option 
                                 value="{{loop.index}}" 
-                                {{ "selected" if filter.weekday == "{{loop.index}}" }}>
+                                {{ "selected" if filter.subject == loop.index }}>
                                     {{subject}}
                                 </option>
                         {% endfor %}

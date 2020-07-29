@@ -101,12 +101,13 @@
 
 
 .schedule-item+.schedule-item {
-    margin-top: 1.6rem;
+    margin-top: 3.2rem;
+    padding-top: 3.2rem;
+    border-top: 1px solid var(--color-line-in-white)
+
 }
 
-.schedule-item .input-block {
-    margin-top: 0 !important;
-}
+
 
 @media (min-width: 700px) {
 
@@ -141,6 +142,10 @@
     #page-give-classes main footer button {
         width: 20rem;
         margin-top: 0;
+    }
+
+    .schedule-item .input-block {
+        margin-top: 0 !important;
     }
 }
 

@@ -56,8 +56,10 @@
     margin-top: .4rem;
 }
 
-.teacher-item>p {
+.teacher-item > p {
     padding: 0 2rem;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
 }
 
 .teacher-item footer {
@@ -82,15 +84,15 @@
     display: block;
 }
 
-.teacher-item footer button {
-    width: 17rem;
+.teacher-item footer .button {
+    width: 20rem;
     height: 5.6rem;
     background: var(--color-secundary);
     color: var(--color-button-text);
     border: 0;
     border-radius: .8rem;
     cursor: pointer;
-    font: 700 1.2rem Archivo;
+    font: 700 1.4rem Archivo;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -99,7 +101,7 @@
     margin-left: 1.6rem;
 }
 
-.teacher-item footer button:hover {
+.teacher-item footer .button:hover {
     background: var(--color-secundary-dark);
 }
 
@@ -123,6 +125,9 @@
         max-width: 740px;
         margin: 0 auto;
     }
+    #search-teachers .select-block {
+        margin-bottom: 0;
+    }
     .teacher-item>p {
         padding: 0 32px;
     }
@@ -130,12 +135,12 @@
         display: initial;
         margin-left: 16px;
     }
-    .teacher-item footer button {
+    .teacher-item footer .button {
         width: 245px;
         font-size: 16px;
         justify-content: center;
     }
-    .teacher-item footer button img {
+    .teacher-item footer .button img {
         margin-right: 16px;
     }
 }

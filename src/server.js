@@ -2,8 +2,10 @@
 const express = require("express")
 const server = express()
 
+//dados fakes
+const data = require('./database/example.data')
 // pegar o banco de dados
-const db = require("./database/db")
+// const db = require("./database/db")
 
 // habilitar o uso do req.body na nossa aplicação
 server.use(express.urlencoded({ extended: true }))
@@ -27,7 +29,7 @@ server.get("/", function(req, res) {
 })
 
 server.get("/study", (req, res) => {
-    return res.render("pages/study.njk")
+    return res.render("pages/study.njk", { teachers: data})
 })
 
 server.get("/give-classes", (req, res) => {
@@ -86,7 +88,6 @@ server.post("/give-classes", (req, res) => {
 })
 
 
-
 server.get("/search", (req, res) => {
 
     const search = req.query.search
@@ -108,8 +109,6 @@ server.get("/search", (req, res) => {
         return res.render("search-results.html", { places: rows, total: total})
     })
 })
-
-
 
 
 // se passar por todos os passos acima

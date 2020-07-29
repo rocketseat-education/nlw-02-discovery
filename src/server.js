@@ -2,14 +2,13 @@
 const express = require("express")
 const server = express()
 
-//dados fakes
-const data = require('./database/example.data')
+// dados fakes
+// const data = require('./database/example.data')
 // pegar o banco de dados
-// const db = require("./database/db")
+const db = require("./database/db")
 
 // habilitar o uso do req.body na nossa aplicação
 server.use(express.urlencoded({ extended: true }))
-
 
 // configurar arquivos estáticos (css, scripts, imagens)
 server.use(express.static("public"))
@@ -18,7 +17,6 @@ server.use(express.static("public"))
 const nunjucks = require("nunjucks")
 nunjucks.configure("src/views", {
     express: server,
-    watch: true,
     noCache: true, // boolean
 })
 
@@ -29,87 +27,72 @@ server.get("/", function(req, res) {
 })
 
 server.get("/study", (req, res) => {
-    return res.render("pages/study.njk", { teachers: data})
+    const convertHourToMinutes = require('./utils/format').convertHourToMinutes
+    const getSubject = require('./utils/format').getSubject
+
+    // console.log(req.query)
+    const filter = req.query
+
+    // vamos iniciar um query com um valor null
+    let query;
+
+    // se existir todos os parametros da busca
+    if (filter.subject && filter.weekday && filter.time) {
+        // vamos buscar somente se existir aula no dia e horário do filtro]
+        let timeInMinutes = convertHourToMinutes(filter.time)
+
+        query = `
+            SELECT classes.*, teachers.*
+            FROM teachers
+            JOIN classes ON (classes.teacher_id = teachers.id)
+            WHERE EXISTS(
+                SELECT class_schedule.*
+                FROM class_schedule
+                WHERE class_schedule.class_id = classes.id
+                AND class_schedule.weekday = '${filter.weekday}'
+                AND class_schedule.time_from <= '${timeInMinutes}'
+                AND class_schedule.time_to > '${timeInMinutes}'
+            )
+            AND classes.subject = '${filter.subject}';`
+        
+        // console.log(query)
+    }
+
+    db.then(async db => {
+        let sendDataToNunjucks = { subjects: getSubject() }
+        // se não existir a query, é pq não veio todos os parametros da busca
+        // então, mostrar a página vazia
+        if (!query) {
+            sendDataToNunjucks = { filter, ...sendDataToNunjucks }
+        } else {
+            // existe a busca ...
+            const results = await db.all(query)
+
+            results.map(teacher => {
+                teacher.subject = getSubject(teacher.subject)
+            })
+
+            sendDataToNunjucks = { teachers: results, filter, ...sendDataToNunjucks }
+        }
+
+        return res.render("pages/study.njk", sendDataToNunjucks)
+
+    }).catch( err => console.log(err)) // mostrar os erros de consulta
+
 })
 
 server.get("/give-classes", (req, res) => {
-    return res.render("pages/give-classes.njk")
-})
+    const getSubject = require('./utils/format').getSubject
 
+    return res.render("pages/give-classes.njk", { subjects: getSubject()})
+})
 
 server.post("/give-classes", (req, res) => {
 
     // req.body: O corpo do nosso formulário
     console.log(req.body)
 
-    // insert teacher
-    let teacher
-    // insert class
-
-    // insert class schedule
-
-    // inserir dados no banco de dados
-    // const query = `
-    //     INSERT INTO teachers (
-    //         name,
-    //         avatar_url,
-    //         address,
-    //         address2,
-    //         state,
-    //         city,
-    //         items
-    //     ) VALUES (?,?,?,?,?,?,?);
-    // `
-
-    // const values = [
-    //     req.body.image,
-    //     req.body.name,
-    //     req.body.address,
-    //     req.body.address2,
-    //     req.body.state,
-    //     req.body.city,
-    //     req.body.items
-    // ]
-
-    // function afterInsertData(err) {
-    //     if(err) {
-    //         console.log(err)
-    //         return res.send("Erro no cadastro!")
-    //     }
-
-    //     console.log("Cadastrado com sucesso")
-    //     console.log(this)
-
-    //     return res.render("create-point.html", {saved: true})
-    // }
-
-    // db.run(query, values, afterInsertData)
-
 })
-
-
-server.get("/search", (req, res) => {
-
-    const search = req.query.search
-
-    if(search == "") {
-        // pesquisa vazia
-        return res.render("search-results.html", { total: 0})
-    }
-
-    // pegar os dados do banco de dados
-    db.all(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err, rows) {
-        if(err) {
-            return console.log(err)
-        }
-
-        const total = rows.length
-
-        // mostrar a página html com os dados do banco de dados
-        return res.render("search-results.html", { places: rows, total: total})
-    })
-})
-
 
 // se passar por todos os passos acima
 // mas não achou nenhuma página, ele vai cair 

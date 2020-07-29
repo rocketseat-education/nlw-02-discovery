@@ -41,7 +41,7 @@ async function useDatabase(db) {
         `
 
         const values = [
-            'Programação WEB para iniciantes',
+            '1',
             '100',
             teacher_id
         ]
@@ -74,9 +74,15 @@ async function useDatabase(db) {
     const selectTeachers = await db.all(`SELECT * FROM teachers`)
     console.log(selectTeachers)
 
-    const selectClasses = await db.all(`SELECT * FROM classes`)
+    const selectClasses = await db.all(`
+        SELECT * 
+        FROM classes 
+        WHERE teacher_id = 1`)
     console.log(selectClasses)
 
-    const selectClassSchedules = await db.all(`SELECT * FROM class_schedule`)
+    const selectClassSchedules = await db.all(`
+        SELECT * 
+        FROM class_schedule
+        WHERE class_id = 1`)
     console.log(selectClassSchedules)
 }

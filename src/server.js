@@ -5,7 +5,7 @@ const server = express()
 // dados fakes 
 // const data = require('./database/example.data')
 // pegar o banco de dados
-const db = require("./database/db")
+const dbConnection = require("./database/db")
 
 // utils
 const { convertHourToMinutes, getSubject } = require('./utils/format')
@@ -29,61 +29,56 @@ server.get("/", function(req, res) {
     return res.render("pages/landing.njk")
 })
 
-server.get("/study", (req, res) => {
+server.get("/study", async(req, res) => {
     // console.log(req.query)
     const filter = req.query
 
-    // vamos iniciar um query com um valor null
-    let query;
+    // lista de matérias
+    const subjects = getSubject()
 
-    // se existir todos os parametros da busca
-    if (filter.subject && filter.weekday && filter.time) {
-        // vamos buscar somente se existir aula no dia e horário do filtro]
-        let timeInMinutes = convertHourToMinutes(filter.time)
+    if (!filter.subject || !filter.weekday || !filter.time) {
+        // Não foi feita a pesquisa, ou está faltando dados,
+        // apresentar a página sem professores, vazia, ou seja, 
+        // teachers vazio.
 
-
-
-        // o horário deverá ser menor do que o solicitado
-        // a pessoa trabalha das 8h - 18h 
-        // o time_from precisa ser antes ou igual ao horário solicitado.
-        query = `
-            SELECT classes.*, teachers.*
-            FROM teachers
-            JOIN classes ON (classes.teacher_id = teachers.id)
-            WHERE EXISTS(
-                SELECT class_schedule.*
-                FROM class_schedule
-                WHERE class_schedule.class_id = classes.id
-                AND class_schedule.weekday = '${filter.weekday}'
-                AND class_schedule.time_from <= '${timeInMinutes}' 
-                AND class_schedule.time_to > '${timeInMinutes}'
-            )
-            AND classes.subject = '${filter.subject}';`
-        
-        // console.log(query)
+        return res.render("pages/study.njk", { subjects, teachers: "" })
     }
+        
+    // vamos buscar somente se existir aula no dia e horário do filtro]
+    let timeInMinutes = convertHourToMinutes(filter.time)
 
-    db.then(async db => {
-        // se não existir a query, é pq não veio todos os parametros da busca
-        // então, mostrar a página vazia
-        let sendDataToNunjucks = { subjects: getSubject(), filter }
+    // vamos pegar as consultas que fizemos antes lá nos testes do banco de dados.
+    const query = `
+        SELECT classes.*, teachers.*
+        FROM teachers
+        JOIN classes ON (classes.teacher_id = teachers.id)
+        WHERE EXISTS(
+            SELECT class_schedule.*
+            FROM class_schedule
+            WHERE class_schedule.class_id = classes.id
+            AND class_schedule.weekday = '${filter.weekday}'
+            AND class_schedule.time_from <= '${timeInMinutes}' 
+            AND class_schedule.time_to > '${timeInMinutes}'
+        )
+        AND classes.subject = '${filter.subject}';`
+    
+    // console.log(query)
+    
+    // usamos o try / catch, para capturar possíveis erros da aplicação
+    try { 
+        const db = await dbConnection;    
+        const teachers = await db.all(query)
 
-        // se existe a busca, fazer ajuste dos dados para apresentar
-        if (query) {
-            
-            const results = await db.all(query)
-
-            results.map(teacher => {
-                teacher.subject = getSubject(teacher.subject)
-            })
-
-            sendDataToNunjucks = { teachers: results, filter, ...sendDataToNunjucks }
-        }
+        teachers.map(teacher => {
+            teacher.subject = getSubject(teacher.subject)
+        })
 
         // apresentar os dados no front-end
-        return res.render("pages/study.njk", sendDataToNunjucks)
-
-    }).catch( err => console.log(err)) // mostrar os erros de consulta
+        return res.render("pages/study.njk", { subjects, filter, teachers })
+        
+    } catch (error) {
+        console.log(error) // mostrar os possíveis erros
+    }
 
 })
 
@@ -91,68 +86,51 @@ server.get("/give-classes", (req, res) => {
     return res.render("pages/give-classes.njk", { subjects: getSubject()})
 })
 
-server.post("/give-classes", (req, res) => {
+server.post("/give-classes", async(req, res) => {
     const createTeacher = require('./database/createTeacher')
 
-    // req.body: O corpo do nosso formulário
+    // req.body: O corpo do nosso formulário, os campos.
     // console.log(req.body)
 
-    const {
-        //teacherValues
-        name, 
-        avatar, 
-        whatsapp, 
-        bio, 
-        
-        // classValues
-        subject, 
-        cost, 
-        
-        // classScheduleValue
-        weekday, 
-        time_from, 
-        time_to 
-    } = req.body
-
     let teacherValue = {
-        name,
-        avatar,
-        whatsapp,
-        bio
+        name: req.body.name,
+        avatar: req.body.avatar,
+        whatsapp: req.body.whatsapp,
+        bio: req.body.bio
     }
 
     let classValue = {
-        subject,
-        cost
+        subject: req.body.subject,
+        cost: req.body.cost
         // teacher_id iremos pegar dentro da função createTeacher
     }
 
 
     let classScheduleValues = []
-    weekday.forEach((weekday, index) => {
+    req.body.weekday.forEach((weekday, index) => {
 
         const classSchedule = {
-            weekday,
-            time_from: convertHourToMinutes(time_from[index]), 
-            time_to: convertHourToMinutes(time_to[index])
+            weekday: req.body.weekday,
+            time_from: convertHourToMinutes(req.body.time_from[index]), 
+            time_to: convertHourToMinutes(req.body.time_to[index])
         }
 
         classScheduleValues.push(classSchedule)
     })
 
-    db.then( async db => {
-        await createTeacher(db, { teacherValue, classValue, classScheduleValues })
+    const db = await dbConnection
+    await createTeacher(db, { teacherValue, classValue, classScheduleValues })
 
-        return res.redirect(`/study?subject=${req.body.subject}&weekday=${req.body.weekday[0]}&time=${req.body.time_from[0]}`)
-    })
+
+
+    let queryString = '?subject=' + req.body.subject
+    queryString += '&weekday=' + req.body.weekday[0]
+    queryString += '&time=' + req.body.time_from[0]
+
+    //console.log(queryString)
+
+    return res.redirect(`/study${queryString}`)
     
-})
-
-// se passar por todos os passos acima
-// mas não achou nenhuma página, ele vai cair 
-// nessa parte
-server.use((req, res, next) => {
-    return res.send('Página de erro')
 })
 
 // liguei meu servidor na porta 5000

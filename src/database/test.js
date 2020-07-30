@@ -50,15 +50,27 @@ db.then(async(db) => {
     const selectTeachers = await db.all(`SELECT * FROM teachers`)
     console.log(selectTeachers)
 
-    const selectClasses = await db.all(`
-        SELECT * 
-        FROM classes 
-        WHERE teacher_id = 1`)
-    console.log(selectClasses)
 
+    // Consultar as classes de um determinado professor
+    // e trazer junto os dados do professor
+    const selectClassesAndTeachers = await db.all(`
+        SELECT classes.*, teachers.*
+        FROM teachers
+        JOIN classes ON (classes.teacher_id = teachers.id)
+        WHERE classes.teacher_id = 1`)
+    console.log(selectClassesAndTeachers)
+
+
+    // o horário deverá ser menor do que o solicitado
+    // se a pessoa trabalha das 8h - 18h 
+    // o time_from precisa ser antes ou igual ao horário solicitado.
+    // o time_to precisa ser acima 
     const selectClassSchedules = await db.all(`
-        SELECT * 
+        SELECT class_schedule.*
         FROM class_schedule
-        WHERE class_id = 1`)
+        WHERE class_schedule.class_id = classes.id
+        AND class_schedule.weekday = '6'
+        AND class_schedule.time_from <= '2100' 
+        AND class_schedule.time_to > '2100'`)
     console.log(selectClassSchedules)
 })

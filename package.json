@@ -8,9 +8,11 @@
     "nunjucks": "^3.2.2",
     "sqlite-async": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
   "scripts": {
-    "start": "node src/server.js"
+    "start": "nodemon -e js,njk --watch src src/server.js"
   },
   "repository": {
     "type": "git",

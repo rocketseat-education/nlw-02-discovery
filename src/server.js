@@ -41,6 +41,11 @@ server.get("/study", (req, res) => {
         // vamos buscar somente se existir aula no dia e horário do filtro]
         let timeInMinutes = convertHourToMinutes(filter.time)
 
+
+
+        // o horário deverá ser menor do que o solicitado
+        // a pessoa trabalha das 8h - 18h 
+        // o time_from precisa ser antes ou igual ao horário solicitado.
         query = `
             SELECT classes.*, teachers.*
             FROM teachers
@@ -50,7 +55,7 @@ server.get("/study", (req, res) => {
                 FROM class_schedule
                 WHERE class_schedule.class_id = classes.id
                 AND class_schedule.weekday = '${filter.weekday}'
-                AND class_schedule.time_from <= '${timeInMinutes}'
+                AND class_schedule.time_from <= '${timeInMinutes}' 
                 AND class_schedule.time_to > '${timeInMinutes}'
             )
             AND classes.subject = '${filter.subject}';`
@@ -92,28 +97,47 @@ server.post("/give-classes", (req, res) => {
     // req.body: O corpo do nosso formulário
     // console.log(req.body)
 
-    let teacherValue = [
-        req.body.name,
-        req.body.avatar,
-        req.body.whatsapp,
-        req.body.bio
-    ]
+    const {
+        //teacherValues
+        name, 
+        avatar, 
+        whatsapp, 
+        bio, 
+        
+        // classValues
+        subject, 
+        cost, 
+        
+        // classScheduleValue
+        weekday, 
+        time_from, 
+        time_to 
+    } = req.body
 
-    let classValue = [
-        +req.body.subject,
-        +req.body.cost
+    let teacherValue = {
+        name,
+        avatar,
+        whatsapp,
+        bio
+    }
+
+    let classValue = {
+        subject,
+        cost
         // teacher_id iremos pegar dentro da função createTeacher
-    ]
+    }
 
 
     let classScheduleValues = []
+    weekday.forEach((weekday, index) => {
 
-    req.body.weekday.forEach((day, index) => {
-        classScheduleValues.push([
-            +day, 
-            convertHourToMinutes(req.body.time_from[index]), 
-            convertHourToMinutes(req.body.time_to[index])
-        ])
+        const classSchedule = {
+            weekday,
+            time_from: convertHourToMinutes(time_from[index]), 
+            time_to: convertHourToMinutes(time_to[index])
+        }
+
+        classScheduleValues.push(classSchedule)
     })
 
     db.then( async db => {

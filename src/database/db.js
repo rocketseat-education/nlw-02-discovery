@@ -1,7 +1,7 @@
 
 const Database = require('sqlite-async')
 
-module.exports = Database.open(__dirname + '/database.db').then(db => 
+module.exports = Database.open(__dirname + '/database.sqlite').then(db => 
     db.exec(`
         CREATE TABLE IF NOT EXISTS teachers (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -1,12 +1,14 @@
+/* CSS - Cascading Style Sheets*/
 :root {
-    --color-background: #F0F0F7;
+    /* variáveis css*/
+    --color-background: #F0F0F7; 
     --color-primary-lighter: #9871F5;
     --color-primary-light: #916BEA;
     --color-primary: #8257E5;
     --color-primary-dark: #774DD6;
-    --color-primary-darker: #6842C2;
-    --color-secundary: #04D361;
-    --color-secundary-dark: #04BF58;
+    --color-primary-darker: #6842c2;
+    --color-secondary: #04D361;
+    --color-secondary-dark: #04BF58;
     --color-title-in-primary: #FFFFFF;
     --color-text-in-primary: #D4C2FF;
     --color-text-title: #32264D;
@@ -18,6 +20,8 @@
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
     --color-small-info: #C1BCCC;
+
+    /* tamanho da fonte padrão: 16px - 100% - 1rem */
     font-size: 60%; /* controle das medidas rem */
 }
 
@@ -27,9 +31,9 @@
     box-sizing: border-box;
 }
 
-html,
+html, 
 body {
-    height: 100vh;
+    height: 100vh; /* height = altura */
 }
 
 body {
@@ -39,22 +43,25 @@ body {
     justify-content: center;
 }
 
+
 body,
 input,
 button,
 textarea {
-    font: 500 1.6rem Poppins;
+    /* font: 500 1.6rem Poppins; */
+    font-weight: 500;
+    font-family: Poppins;
+    font-size: 1.6rem;
     color: var(--color-text-base);
 }
 
 #container {
-    width: 90vw;
+    width: 90vw; /* width = largura */
     max-width: 700px;
 }
 
-/* every page above 700px of width */
 @media (min-width: 700px) {
     :root {
-        font-size: 62.5%; /* making 1rem act like 10px */
+        font-size: 62.5%; /* todo 1rem vai ser relativo a 10px */
     }
 }

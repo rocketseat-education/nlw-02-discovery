@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Ecoleta" title="Ecoleta" src=".github/ecoleta.svg" width="220px" />
+    <img alt="Proffy" title="Proffy" src=".github/proffy.svg" width="220px" />
 </h1>
 
 <p align="center">
@@ -10,15 +10,15 @@
 </p>
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=7159c1&labelColor=000000" alt="PRs welcome!" />
+ <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=8257E5&labelColor=000000" alt="PRs welcome!" />
 
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=7159c1&labelColor=000000">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000">
 </p>
 
 <br>
 
 <p align="center">
-  <img alt="Proffy" src=".github/logo.png" width="100%">
+  <img alt="Proffy" src=".github/proffy.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias

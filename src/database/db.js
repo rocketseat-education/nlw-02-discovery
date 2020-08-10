@@ -1,4 +1,3 @@
-
 const Database = require('sqlite-async')
 
 module.exports = Database.open(__dirname + '/database.sqlite').then(db => 

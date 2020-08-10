@@ -1,92 +1,48 @@
-.input-block {
-    position: relative;
-}
 
-.input-block label {
-    font-size: 1.4rem;
-    color: var(--color-text-complement);
-}
-
-.input-block input {
-    width: 100%;
-    height: 5.6rem;
-    margin-top: 0.8rem;
-    border-radius: 0.8rem;
-    background: var(--color-input-background);
-    border: 1px solid var(--color-line-in-white);
-    outline: 0;
-    padding: 0 1.6rem;
-    font: 1.6rem Archivo;
-}
-
-.input-block:focus-within::after {
-    width: calc(100% - 3.2rem);
-    height: 2px;
-    content: "";
-    background: var(--color-primary-light);
-    position: absolute;
-    left: 1.6rem;
-    right: 1.6rem;
-    bottom: 0;
-}
-
-.textarea-block {
-    position: relative;
-}
-
+.select-block label,
+.input-block label,
 .textarea-block label {
     font-size: 1.4rem;
     color: var(--color-text-complement);
 }
 
+.input-block input,
+.select-block select,
 .textarea-block textarea {
     width: 100%;
-    height: 16rem;
+    height: 5.6rem;
     margin-top: 0.8rem;
     border-radius: 0.8rem;
     background: var(--color-input-background);
     border: 1px solid var(--color-line-in-white);
     outline: 0;
-    resize: vertical;
-    padding: 1.2rem 1.6rem;
-    font: 1.6rem Archivo;
-}
-
-.textarea-block:focus-within::after {
-    width: calc(100% - 3.2rem);
-    height: 2px;
-    content: "";
-    background: var(--color-primary-light);
-    position: absolute;
-    left: 1.6rem;
-    right: 1.6rem;
-    bottom: 0;
-}
-
-.select-block {
-    position: relative;
-}
-
-.select-block label {
-    font-size: 1.4rem;
-    color: var(--color-text-complement);
-}
-
-.select-block select {
-    width: 100%;
-    height: 5.6rem;
-    margin-top: .8rem;
-    border-radius: .8rem;
-    background: var(--color-input-background);
-    border: 1px solid var(--color-line-in-white);
-    outline: 0;
-
     padding: 0 1.6rem;
     font: 1.6rem Archivo;
 }
 
-.select-block select:invalid {
-    color: #999;
+.textarea-block textarea {
+    padding: 1.2rem 1.6rem;
+    height: 16rem;
+
+    resize: vertical;
+}
+
+.input-block,
+.textarea-block {
+    position: relative;
+}
+
+.input-block:focus-within::after,
+.textarea-block:focus-within::after {
+    content: "";
+
+    width: calc(100% - 3.2rem);
+    height: 2px;
+    background:var(--color-primary-light);
+    
+    position: absolute;
+    left: 1.6rem;
+    bottom: 0px;
 }
 
 label small {

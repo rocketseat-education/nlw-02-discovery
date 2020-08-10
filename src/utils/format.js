@@ -1,40 +1,39 @@
-function convertHourToMinutes(time) {
-    const [hour, minutes] = time.split(':').map(Number);
-    const timeInMinutes = (hour * 60) + minutes;
+const subjects = [
+    "Artes",
+    "Biologia",
+    "Ciências",
+    "Educação física",
+    "Física",
+    "Geografia",
+    "História",
+    "Matemática",
+    "Português",
+    "Quí-mica",
+]
 
-    return +timeInMinutes;
+const weekdays = [
+    "Domingo",
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado",
+]
+
+function getSubject(subjectNumber) {
+    const position = +subjectNumber - 1
+    return subjects[position]
 }
 
-function getSubject(subject) {
-    const subjects = [
-        "Artes",
-        "Biologia",
-        "Ciências",
-        "Educação Física",
-        "Física",
-        "Geografia",
-        "História",
-        "Matemática",
-        "Português",
-        "Química",
-    ]
-
-    let response = subjects[subject - 1]
-
-    if (!response)
-        return subjects
-    
-    return response
+function convertHoursToMinutes(time) {
+    const [hour, minutes]  = time.split(":")
+    return Number((hour * 60) + minutes)
 }
-
-// console.log(getSubject(0))
-// console.log(getSubject(1))
-// console.log(getSubject(11))
-// console.log(getSubject())
-
-// console.log(convertHourToMinutes('12:59'))
 
 module.exports = {
-    convertHourToMinutes,
-    getSubject
+    subjects,
+    weekdays,
+    getSubject,
+    convertHoursToMinutes
 }

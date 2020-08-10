@@ -1,8 +1,8 @@
 {
-  "name": "nlw-discovery-02",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/server.js",
+  "name": "nlw",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "nunjucks": "^3.2.2",
@@ -10,18 +10,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  },
-  "scripts": {
-    "start": "nodemon -e js,njk --watch src src/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maykbrito/nlw-discovery-02.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/maykbrito/nlw-discovery-02/issues"
-  },
-  "homepage": "https://github.com/maykbrito/nlw-discovery-02#readme"
+  }
 }

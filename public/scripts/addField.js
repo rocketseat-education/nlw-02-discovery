@@ -1,7 +1,7 @@
 // Procurar o botao
 document.querySelector("#add-time")
-// Quando clicar no botao
-.addEventListener('click', cloneField)
+    // Quando clicar no botao
+    .addEventListener('click', cloneField)
 
 // Executar uma acao
 function cloneField() {

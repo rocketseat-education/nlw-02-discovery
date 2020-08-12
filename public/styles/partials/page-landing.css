@@ -35,24 +35,16 @@
 .buttons-container a {
     width: 30rem;
     height: 10.4rem;
-
     border-radius: .8rem;
     margin-right: 1.6rem;
-
     font: 700 2.4rem Archivo;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     text-decoration: none;
-
     transition: background 0.2s;
-
     color: var(--color-button-text);
 }
-
-
 
 .buttons-container a img {
     width: 4rem;
@@ -78,7 +70,6 @@
 
 .total-connections {
     font-size: 1.8rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,10 +80,10 @@
 }
 
 @media (max-width: 1100px) {
-    :root {
-        font-size: 40%; /* modificar as medidas rem */
+     :root {
+        font-size: 40%;
+        /* modificar as medidas rem */
     }
-
     .hero-image {
         height: 45rem;
     }
@@ -104,35 +95,28 @@
         display: grid;
         grid-template-columns: 2fr 1fr 2fr;
         grid-template-rows: 350px 104px;
-        grid-template-areas: 
-        "proffy image image"
-        "button button texting";
+        grid-template-areas: "proffy image image" "button button texting";
         column-gap: 87px;
         row-gap: 86px;
     }
-
     .logo-container {
         grid-area: proffy;
         text-align: initial;
         align-self: center;
         margin: 0;
     }
-
     .logo-container img {
         height: 127px;
     }
-
     .hero-image {
         grid-area: image;
         height: 350px;
     }
-
     .buttons-container {
         grid-area: button;
         justify-content: flex-start;
         margin: 0;
     }
-
     .total-connections {
         grid-area: texting;
         justify-self: end;

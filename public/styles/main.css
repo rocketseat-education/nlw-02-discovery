@@ -1,7 +1,8 @@
 /* CSS - Cascading Style Sheets*/
+
 :root {
     /* variáveis css*/
-    --color-background: #F0F0F7; 
+    --color-background: #F0F0F7;
     --color-primary-lighter: #9871F5;
     --color-primary-light: #916BEA;
     --color-primary: #8257E5;
@@ -20,9 +21,9 @@
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
     --color-small-info: #C1BCCC;
-
     /* tamanho da fonte padrão: 16px - 100% - 1rem */
-    font-size: 60%; /* controle das medidas rem */
+    font-size: 60%;
+    /* controle das medidas rem */
 }
 
 * {
@@ -31,9 +32,10 @@
     box-sizing: border-box;
 }
 
-html, 
+html,
 body {
-    height: 100vh; /* height = altura */
+    height: 100vh;
+    /* height = altura */
 }
 
 body {
@@ -42,7 +44,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 
 body,
 input,
@@ -56,12 +57,14 @@ textarea {
 }
 
 #container {
-    width: 90vw; /* width = largura */
+    width: 90vw;
+    /* width = largura */
     max-width: 700px;
 }
 
 @media (min-width: 700px) {
-    :root {
-        font-size: 62.5%; /* todo 1rem vai ser relativo a 10px */
+     :root {
+        font-size: 62.5%;
+        /* todo 1rem vai ser relativo a 10px */
     }
 }
